@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Note, NewNote } from "../types/note";
+import type { Note, NewNote, CategoryType } from "../types/note";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -34,4 +34,8 @@ export default fetchNotes;
 export const fetchNoteById = async (id: string): Promise<Note> => {
   const response = await axios.get<Note>(`/notes/${id}`);
   return response.data;
+};
+export const getCategories = async () => {
+  const { data } = await axios.get<CategoryType[]>("/categories");
+  return data;
 };

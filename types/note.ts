@@ -11,3 +11,9 @@ export interface NewNote {
   content: string;
   tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
 }
+export interface CategoryType {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
