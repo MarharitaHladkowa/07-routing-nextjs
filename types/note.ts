@@ -13,7 +13,7 @@ export interface NewNote {
 }
 export interface CategoryType {
   id: string;
-  name: string;
+  title: string;
   createdAt: string;
   updatedAt: string;
 }

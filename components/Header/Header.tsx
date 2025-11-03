@@ -1,6 +1,7 @@
 import { getCategories } from "@/lib/api";
 import css from "./Header.module.css";
 import Link from "next/link";
+import { ALL_NOTES } from "@/lib/constants";
 
 const Header = async () => {
   const categories = await getCategories();
@@ -16,11 +17,11 @@ const Header = async () => {
           </li>
           <ul>
             <li>
-              <Link href="/notes/filter/all">All Notes</Link>
+              <Link href={`/notes/filter/${ALL_NOTES}`}>All Notes</Link>
             </li>
             {categories.map((item) => (
               <li key={item.id}>
-                <Link href={`/notes/filter/${item.id}`}>{item.name}</Link>
+                <Link href={`/notes/filter/${item.id}`}>{item.title}</Link>
               </li>
             ))}
           </ul>
