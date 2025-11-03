@@ -39,8 +39,6 @@ export const getCategories = async () => {
   const { data } = await axios.get<CategoryType[]>("/categories");
   return data;
 };
-// 2. НОВАЯ ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ЗАМЕТОК С ФИЛЬТРАЦИЕЙ ПО КАТЕГОРИИ
-// Она будет использоваться для маршрутов вида /notes/filter/[categoryId]
 export const getNotes = async (
   categoryId?: string
 ): Promise<FetchNotesResponse> => {
