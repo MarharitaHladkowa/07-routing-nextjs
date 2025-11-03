@@ -11,9 +11,11 @@ export interface NewNote {
   content: string;
   tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
 }
+
+export type Tag = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
+
+// Тип для совместимости с компонентами, ожидающими getCategories() output
 export interface CategoryType {
-  id: string;
-  title: string;
-  createdAt: string;
-  updatedAt: string;
+  id: string; // Будет именем тега (Tag Name)
+  name: Tag;
 }

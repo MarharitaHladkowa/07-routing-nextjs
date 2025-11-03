@@ -7,7 +7,7 @@ interface FilterPageProps {
 
 const FilterPage = async ({ params }: FilterPageProps) => {
   const { tag } = await params;
-  await getNotes(tag[0] === ALL_NOTES ? undefined : tag[0]);
+  const res = await getNotes(tag[0] === ALL_NOTES ? undefined : tag[0]);
   return <div>NotesByCategory: </div>;
 };
 

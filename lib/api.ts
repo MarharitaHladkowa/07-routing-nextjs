@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Note, NewNote, CategoryType } from "../types/note";
+import type { Note, NewNote, CategoryType, Tag } from "../types/note";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -11,7 +11,7 @@ interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 }
-
+export const tags: Tag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 export const fetchNotes = async (query: string, page: number) => {
   const response = await axios.get<FetchNotesResponse>("/notes", {
     params: {
@@ -36,15 +36,13 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
   return response.data;
 };
 export const getCategories = async () => {
-  const { data } = await axios.get<CategoryType[]>("/categories");
+  const { data } = await axios.get<CategoryType[]>("/tags");
   return data;
 };
-export const getNotes = async (
-  categoryId?: string
-): Promise<FetchNotesResponse> => {
+export const getNotes = async (tag?: string): Promise<FetchNotesResponse> => {
   const { data } = await axios.get<FetchNotesResponse>("/notes", {
     params: {
-      categoryId,
+      tag,
     },
   });
   return data;
