@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Note, NewNote, CategoryType, Tag } from "../types/note";
+import type { Note, NewNote } from "../types/note";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -11,13 +11,14 @@ interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 }
-export const tags: Tag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
-export const fetchNotes = async (query: string, page: number) => {
+
+export const fetchNotes = async (query: string, page: number, tag: string) => {
   const response = await axios.get<FetchNotesResponse>("/notes", {
     params: {
       search: query,
       page,
       perPage: 12,
+      tag,
     },
   });
   return response.data;
@@ -30,20 +31,7 @@ export const deleteNote = async (noteId: string) => {
   const response = await axios.delete<Note>(`/notes/${noteId}`);
   return response.data;
 };
-export default fetchNotes;
 export const fetchNoteById = async (id: string): Promise<Note> => {
   const response = await axios.get<Note>(`/notes/${id}`);
   return response.data;
-};
-export const getCategories = async () => {
-  const { data } = await axios.get<CategoryType[]>("/tags");
-  return data;
-};
-export const getNotes = async (tag?: string): Promise<FetchNotesResponse> => {
-  const { data } = await axios.get<FetchNotesResponse>("/notes", {
-    params: {
-      tag,
-    },
-  });
-  return data;
 };

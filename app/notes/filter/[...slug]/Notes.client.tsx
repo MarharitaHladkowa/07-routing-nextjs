@@ -10,11 +10,11 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import Modal from "@/components/Modal/Modal";
-import type { Note } from "../../types/note";
+import type { Note } from "@/types/note";
 import Pagination from "@/components/Pagination/Pagination";
 import css from "./NotesPage.module.css";
 
-export default function NotesClient() {
+export default function NotesClient({ tag }) {
   const [query, setQuery] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const openModal = () => setIsModalOpen(true);
@@ -23,8 +23,8 @@ export default function NotesClient() {
   const [page, setPage] = useState<number>(1);
 
   const { data, isLoading, isError, error, isSuccess } = useQuery({
-    queryKey: ["notes", query, page],
-    queryFn: () => fetchNotes(query, page),
+    queryKey: ["notes", query, page, tag],
+    queryFn: () => fetchNotes(query, page, tag),
     placeholderData: (previousData) => previousData,
     refetchOnMount: false,
   });

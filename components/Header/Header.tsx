@@ -19,11 +19,6 @@ const Header = async () => {
             <li>
               <Link href={`/notes/filter/${ALL_NOTES}`}>All Notes</Link>
             </li>
-            {categories.map((item) => (
-              <li key={item.id}>
-                <Link href={`/notes/filter/${item.id}`}>{item.title}</Link>
-              </li>
-            ))}
           </ul>
         </ul>
       </nav>
