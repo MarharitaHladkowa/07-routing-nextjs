@@ -1,10 +1,8 @@
-import { getCategories } from "@/lib/api";
 import css from "./Header.module.css";
 import Link from "next/link";
 import { ALL_NOTES } from "@/lib/constants";
 
-const Header = async () => {
-  const categories = await getCategories();
+const Header = () => {
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home">
