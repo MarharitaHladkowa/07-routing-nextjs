@@ -13,7 +13,7 @@ export default function SidebarNotes({}) {
       {tags.map((tag) => (
         <li className={css.menuItem} key={tag}>
           <Link href={`/notes/filter/${tag}`} className={css.menuLink}>
-            назва тегу
+            {tag} notes
           </Link>
         </li>
       ))}

@@ -13,8 +13,11 @@ import Modal from "@/components/Modal/Modal";
 import type { Note } from "@/types/note";
 import Pagination from "@/components/Pagination/Pagination";
 import css from "./NotesPage.module.css";
-
-export default function NotesClient({ tag }) {
+import type { Tag } from "@/types/note";
+interface NotesClientProps {
+  tag?: Tag;
+}
+export default function NotesClient({ tag }: NotesClientProps) {
   const [query, setQuery] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const openModal = () => setIsModalOpen(true);
