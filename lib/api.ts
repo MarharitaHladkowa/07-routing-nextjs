@@ -12,7 +12,11 @@ interface FetchNotesResponse {
   totalPages: number;
 }
 
-export const fetchNotes = async (query: string, page: number, tag: string) => {
+export const fetchNotes = async (
+  query: string,
+  page: number,
+  tag: string | undefined
+) => {
   const response = await axios.get<FetchNotesResponse>("/notes", {
     params: {
       search: query,
