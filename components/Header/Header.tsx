@@ -8,17 +8,10 @@ const Header = () => {
       <Link href="/" aria-label="Home">
         NoteHub
       </Link>
-      <nav aria-label="Main Navigation">
-        <ul className={css.navigation}>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <ul>
-            <li>
-              <Link href={`/notes/filter/${ALL_NOTES}`}>All Notes</Link>
-            </li>
-          </ul>
-        </ul>
+      <nav aria-label="Main Navigation" className={css.navigation}>
+        <Link href="/">Home</Link>
+
+        <Link href={`/notes/filter/${ALL_NOTES}`}>Notes</Link>
       </nav>
     </header>
   );
