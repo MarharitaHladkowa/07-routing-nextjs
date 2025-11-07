@@ -20,7 +20,7 @@ const NotesPage = async ({ params }: FilterPageProps) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["note", { pages: 1, searchValue: "", tag }],
+    queryKey: ["notes", { pages: 1, searchValue: "", tag }],
     queryFn: () => fetchNotes(``, 1, tag),
   });
 

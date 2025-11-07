@@ -21,31 +21,23 @@ export interface ModalProps {
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   useEffect(() => {
     if (!isOpen) {
-      // Якщо вікно закрите, нічого не робимо
       return;
     }
 
-    // --- 1. Керування прокруткою ---
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // --- 2. Обробник ESC ---
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         onClose();
       }
     };
     window.addEventListener("keydown", handleEscape);
-
-    // --- 3. Функція очищення (CLEANUP) ---
     return () => {
-      // Відновлюємо прокрутку
       document.body.style.overflow = originalOverflow;
-      // Видаляємо обробник клавіатури
       window.removeEventListener("keydown", handleEscape);
     };
   }, [isOpen, onClose]);
-  // ------------------------------------------------------------------
 
   if (!isOpen) {
     return null;
